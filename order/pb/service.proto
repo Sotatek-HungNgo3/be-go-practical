@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/Sotatek-HungNgo3/be-practical-order/pb";
+
+service PaymentService {
+  rpc MakePayment(MakePaymentRequest) returns (MakePaymentResponse);
+}
+
+message MakePaymentRequest {
+  string ProductName = 1;
+  double OrderAmount = 2;
+  PaymentMethod method = 3;
+}
+
+message MakePaymentResponse {
+  PaymentStatus status = 1;
+  string ErrorMessage = 2;
+}
+
+enum PaymentStatus {
+  Confirmed = 0;
+  Declined = 1;
+}
+
+enum PaymentMethod {
+  CreditCard = 0;
+  Cash = 1;
+}
